@@ -26,23 +26,13 @@ st.set_page_config(
 )
 
 # ── Hardcoded Firebase credentials (DO NOT SHARE THIS FILE PUBLICLY) ─────────
-FIREBASE_CONFIG = {
-    "type": "service_account",
-    "project_id": "feedback-46e20",
-    "private_key_id": "2f1e4d54ee9824a2ab002a0aa599a4d93008539d",
-    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDCzbtpt9bmqMSY\nU+k+ehpPnm/307irIwwrPVFs+YQ2TF5dCv6l7WhZcWbm8SzN+RmGrGQdwan7OKIx\nqc6cmzu0c2mOu5/uxd/EAPDBHG7QhyOlnc8eY8fjI1s2qyMq7jf+1mcEvl/35rJk\nlC8BUy0XVvoIpoLuIsAv7GvI2kZ38Sx6aSw1ZknNwQg+xiivZRevZgil9LtUwV6P\nmCgBxamgbTGRzFsVVT1vIhn7uc0c2tS1l84uEJnTY9cRoAxL2pF/lTjJmRwIPk80\ndvroTpfr7S7C2px5sVwmODIJHI8DJ1i3JMOfUXkAvPhL/UtyBzDD6g+fELPJRbZg\nVwmtu5ipAgMBAAECggEAGZbu9I86wqgO0zfKnvNpO2ZDrRl527lJ4vA2HwuT65IS\nn0RPeTp7h6xW6SVrTk9XpBJHQIVtL9wbqkx1IKtfp2+1wRMyiioiH9xDxApZIDlw\nXFQjnglbe6HsXH0UrJIIdwhxFfVwI9+BNaclmZX0iWlahQJilqen+WOkMQlDUoP3\n0ewM46HL41yt96hFKAkHoPjLtFpciWrZbIkTe58I6z0L40IgmVGq8juaQAdVf0RR\nb5vbL8L41GBqbRyqIBU46gIyTVZN7BKK+8zD8Xlh+cCAPSPjouwHFP28CRBCA4JJ\njtKOqP7cjvMoO9s3cuvE0xxihontdtv0Jr8u0A+/1QKBgQD7EU/Q8Dpe5auNLi1H\nzlslbKi10eB0xm5TpfEyLqdtb/UUmiI71z0YjjMcHqfBAUWOluWRUmVfZyrz8E5h\nCEl1qES977NOtRWXkbkgkOb2J8i9YpqKYyfno+EqlyGzkEm2CSuKivk6YvnLmiK5\npyydUv9TFo+iZoSeVR/Qx6OJlwKBgQDGoXQHNw5fvGJmFzioQIRDBkXh4q2CmaR3\nJDfGjYyo5a7xdEJgUnSs9HvWl8R6tYD5C6gDt1spE3tS8+ixVnBmHZP425q1ys3f\nBrFfDCmHcg5Rv0ikMC38bu1234yujcSnrAmIqsuEDmHfM5R4z07LBZeiXhYyCuaX\nUv0/4Su3vwKBgQDF9pmDutebmeaRtHZZpxlxQeMpMiqUiR3W8QJkuiqj/OI2823I\n12dCJGWiZ32IjpMk4lBzLI/oELXqkHGMyvb5QcuqJAWzKs+yqmFZj0e9khMTWVtX\ngOWnHS3e4jndlwi38zUU0Y3AfuhNpOR6lJl2F0phXmm0+LbbDW2/tpp5UwKBgQCs\ntgxmjafQ9MP2kzBvlBGtGdI/1FMcoS3RbsuUuNXaskRIrNdeW7QaA0d+015DeHjZ\nlBoWiSMZ91efTHhDYq6/C+7zTzgZ5GrYB0DJLZEatcDfsdye70m9GlMersjrqleZ\nl8x+akwl2j+dzYLG/TM88vLjer3/61yPrdiI5+iUjwKBgQC/YVg/vh8i4pNHP0rf\nd8vO8A2XPIeRI4w3QdO7IVn3fpiq7z8ZW1wAjPv6EiBfsRq8MY+lDuzfqCBYhFvu\nZgHt+AAhmJJzxJAq2D+jZxAET2kWi/ApIbKLa35O+h05Woz+yqy77fm1UQdujYra\nkRpReKbdemSmmnhoTCYxrS7CVw==\n-----END PRIVATE KEY-----\n",
-    "client_email": "firebase-adminsdk-fbsvc@feedback-46e20.iam.gserviceaccount.com",
-    "client_id": "105570623321357659693",
-    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-    "token_uri": "https://oauth2.googleapis.com/token",
-    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40feedback-46e20.iam.gserviceaccount.com",
-    "universe_domain": "googleapis.com"
-}
+
 DATABASE_URL = "https://feedback-46e20-default-rtdb.firebaseio.com"
 
 # ── Initialize Firebase (only once) ─────────────────────────────────────────
-# ── Initialize Firebase (only once) ─────────────────────────────────────────
+FIREBASE_CONFIG = dict(st.secrets["firebase"])
+DATABASE_URL = FIREBASE_CONFIG.pop("database_url")
+
 try:
     firebase_admin.get_app()
 except ValueError:
