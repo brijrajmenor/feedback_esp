@@ -1,9 +1,3 @@
-"""
-Feedback Kiosk — Analytics Dashboard
-Hardcoded Firebase RTDB + Daily SLA (resets at 12am)
-Run: streamlit run feedback_dashboard.py
-"""
-
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -155,7 +149,7 @@ h1, h2, h3 { font-family: 'DM Serif Display', serif; letter-spacing: -0.02em; }
 # ── Sidebar controls ─────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown("## 📡 Data Source")
-    st.markdown("**Live Firebase RTDB** (hardcoded credentials)")
+    st.markdown("**Live Firebase RTDB** ")
     if st.button("🔄 Refresh Data"):
         st.cache_data.clear()
         st.rerun()
