@@ -42,9 +42,15 @@ FIREBASE_CONFIG = {
 DATABASE_URL = "https://feedback-46e20-default-rtdb.firebaseio.com"
 
 # ── Initialize Firebase (only once) ─────────────────────────────────────────
-if not firebase_admin._apps:
+# ── Initialize Firebase (only once) ─────────────────────────────────────────
+try:
+    firebase_admin.get_app()
+except ValueError:
     cred = credentials.Certificate(FIREBASE_CONFIG)
-    firebase_admin.initialize_app(cred, {"databaseURL": DATABASE_URL})
+    firebase_admin.initialize_app(
+        cred,
+        {"databaseURL": DATABASE_URL}
+    )
 
 # ── Helper functions ─────────────────────────────────────────────────────────
 def metric_card(col, label, value, delta=None, delta_type="neu"):
