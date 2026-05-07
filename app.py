@@ -25,10 +25,6 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# ── Hardcoded Firebase credentials (DO NOT SHARE THIS FILE PUBLICLY) ─────────
-
-DATABASE_URL = "https://feedback-46e20-default-rtdb.firebaseio.com"
-
 # ── Initialize Firebase (only once) ─────────────────────────────────────────
 FIREBASE_CONFIG = dict(st.secrets["firebase"])
 DATABASE_URL = FIREBASE_CONFIG.pop("database_url")
